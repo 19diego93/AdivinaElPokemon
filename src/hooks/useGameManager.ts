@@ -2,11 +2,6 @@ import { useState, useEffect, useCallback } from "react";
 import { pokemonService } from "../service/pokemon.service";
 import type { Pokemon } from "../types/pokemon.interface";
 
-// export enum GameState {
-//   Playing = "playing",
-//   Correct = "correct",
-//   Wrong = "wrong",
-// }
 export const GameState = {
   Playing: "playing",
   Correct: "correct",
@@ -18,8 +13,11 @@ export const useGameManager = () => {
   const [pokemon, setPokemon] = useState<Pokemon | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
-
   const [gameState, setGameState] = useState<GameState>(GameState.Playing);
+
+  // Estadísticas del juego
+  const [wins, setWins] = useState(0);
+  const [losses, setLosses] = useState(0);
 
   const handlePokemonNameSubmit = useCallback(
     (userInput: string) => {
@@ -28,7 +26,13 @@ export const useGameManager = () => {
         pokemon.name,
         userInput
       );
-      setGameState(isValid ? GameState.Correct : GameState.Wrong);
+      if (isValid) {
+        setWins((prevWins) => prevWins + 1);
+        setGameState(GameState.Correct);
+      } else {
+        setLosses((prevLosses) => prevLosses + 1);
+        setGameState(GameState.Wrong);
+      }
     },
     [pokemon]
   );
@@ -48,9 +52,13 @@ export const useGameManager = () => {
       setLoading(false);
     }
   }, []);
+
   useEffect(() => {
     loadNewPokemon();
   }, [loadNewPokemon]);
+
+  const totalGames = wins + losses;
+  const effectiveness = totalGames > 0 ? (wins / totalGames) * 100 : 0;
 
   return {
     pokemon,
@@ -59,5 +67,8 @@ export const useGameManager = () => {
     loadNewPokemon,
     handlePokemonNameSubmit,
     gameState,
+    wins,
+    losses,
+    effectiveness,
   };
 };

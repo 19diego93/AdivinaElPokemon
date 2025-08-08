@@ -1,3 +1,4 @@
+import GameStats from "./components/GameStats";
 import PokemonDisplay from "./components/PokemonDisplay";
 import PokemonForm from "./components/PokemonForm";
 import PokemonResult from "./components/PokemonResult";
@@ -10,6 +11,9 @@ const App = () => {
     loading,
     gameState,
     handlePokemonNameSubmit,
+    wins,
+    losses,
+    effectiveness,
   } = useGameManager();
 
   if (error) {
@@ -33,6 +37,7 @@ const App = () => {
             loadNewPokemon={loadNewPokemon}
             gameState={gameState}
           />
+          <GameStats wins={wins} losses={losses} effectiveness={effectiveness} />
         </div>
       </div>
     </div>
