@@ -26,6 +26,7 @@ const getRandomPokemon = async (): Promise<Pokemon> => {
     id: data.id,
     name: data.name,
     image: data.sprites.other["official-artwork"].front_default,
+    abilities: data.abilities.map((ability: any) => ability.ability.name),
   };
 };
 

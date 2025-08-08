@@ -38,6 +38,7 @@ const App = () => {
           gameState={gameState}
         />
         <PokemonResult
+          pokemon={pokemon}
           loadNewPokemon={loadNewPokemon}
           gameState={gameState}
         />
