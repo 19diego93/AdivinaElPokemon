@@ -20,25 +20,25 @@ const PokemonForm = ({ handlePokemonNameSubmit, gameState }: Props) => {
   };
 
   return (
-    <form className="input-group my-4" onSubmit={handleSubmit}>
+    <form className="flex items-center gap-4 mb-6" onSubmit={handleSubmit}>
       <input
         type="text"
-        className="form-control"
-        placeholder="¿Quién es ese Pokemón?"
-        aria-label="¿Quién es ese Pokemón?"
+        className="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50"
+        placeholder="¿Quién es ese Pokémon?"
         value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}
         autoFocus
         disabled={gameState !== "playing"}
       />
       <button
-        className="btn btn-outline-dark"
+        className="px-6 py-2 bg-blue-600 hover:bg-blue-700 rounded-lg font-semibold transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
         type="submit"
         disabled={!inputValue.trim() || gameState !== "playing"}
       >
-        Button
+        Adivinar
       </button>
     </form>
   );
 };
+
 export default PokemonForm;

@@ -1,10 +1,9 @@
 const Spinner = () => {
   return (
-    <div className="d-flex justify-content-center ">
-      <div className="spinner-border" role="status">
-        <span className="visually-hidden">Loading...</span>
-      </div>
+    <div className="flex justify-center items-center">
+      <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-blue-500"></div>
     </div>
   );
 };
+
 export default Spinner;

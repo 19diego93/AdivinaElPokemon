@@ -10,26 +10,25 @@ const PokemonResult = ({ loadNewPokemon, gameState }: Props) => {
     return null; // No result to show while playing
   }
 
+  const isCorrect = gameState === GameState.Correct;
+
   return (
     <div
-      className={`alert alert-${
-        gameState === GameState.Correct ? "success" : "danger"
-      } text-center`}
+      className={`p-4 rounded-lg text-center transition-all duration-300 ${
+        isCorrect ? "bg-green-500" : "bg-red-500"
+      }`}
     >
-      {gameState === GameState.Correct ? (
-        <h2>
-          "¡Correcto!" <i className="bi bi-patch-check"></i>
-        </h2>
-      ) : (
-        <h2>
-          "Incorrecto. Inténtalo de nuevo."{" "}
-          <i className="bi bi-patch-exclamation-fill"></i>
-        </h2>
-      )}
-      <button className="btn btn-dark mt-3" onClick={loadNewPokemon}>
+      <h2 className="text-2xl font-bold mb-4">
+        {isCorrect ? "¡Correcto!" : "Incorrecto. Inténtalo de nuevo."}
+      </h2>
+      <button
+        className="px-6 py-2 bg-gray-800 hover:bg-gray-700 rounded-lg font-semibold transition-colors duration-300"
+        onClick={loadNewPokemon}
+      >
         Volver a jugar
       </button>
     </div>
   );
 };
+
 export default PokemonResult;
