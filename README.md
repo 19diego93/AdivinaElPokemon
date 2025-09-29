@@ -2,6 +2,9 @@
 
 This is a Pokedex project created by a student aspiring to become a software developer. The project showcases the use of modern web development technologies to create a simple and interactive application.
 
+Deployed with Netlify:
+Link to app -> statuesque-gumdrop-98cf9a.netlify.app 
+
 ## Features
 
 - Search for a Pokémon by name.
